@@ -1,9 +1,47 @@
 {
-  "default_images":[
+  "default_backgrounds":[
     {
       "slug": "chalous",
-      "image": "",
-      "thumbnail": ""
+      "image": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_1.jpg?raw=true",
+      "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_1_thumb.png?raw=true"
+    },
+    {
+      "slug": "eiffel",
+      "image": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_2.jpg?raw=true",
+      "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_2_thumb.png?raw=true"
+    },
+    {
+      "slug": "invoker",
+      "image": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_3.jpg?raw=true",
+      "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_3_thumb.png?raw=true"
+    },
+    {
+      "slug": "beach",
+      "image": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_4.jpg?raw=true",
+      "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_4_thumb.png?raw=true"
     }
-  ]
+  ],
+  "steams": [
+    {
+      "slug": "steam1",
+      "landscape": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/steams/steam1_land.jpg?raw=true",
+      "portrait": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/steams/steam1_port.jpg?raw=true",
+      "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/steams/steam1_thumb.png?raw=true"
+    },
+    {
+      "slug": "steam2",
+      "landscape": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/steams/steam2_land.jpg?raw=true",
+      "portrait": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/steams/steam2_port.jpg?raw=true",
+      "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/steams/steam2_thumb.png?raw=true"
+    },
+    {
+      "slug": "steam3",
+      "landscape": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/steams/steam3_land.jpg?raw=true",
+      "portrait": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/steams/steam3_port.jpg?raw=true",
+      "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/steams/steam3_thumb.png?raw=true"
+    }
+  ],
+  "config": {
+    "instagram_id": "steamy_draw"
+  }
 }
