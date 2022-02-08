@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:steamy_draw/presentation/pages/home/home_page.dart';
 import 'package:steamy_draw/resources.dart';
 
+import 'presentation/app_scroll_behaviour.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppTexts.appName,
+      scrollBehavior: AppScrollBehavior(),
       theme: ThemeData(
         colorScheme: const ColorScheme(
           primary: AppColors.primary,

@@ -11,6 +11,7 @@ class AppColors {
   static const Color onPrimary = Colors.white;
   static const Color onSecondary = primary;
   static const Color onError = Colors.white;
+  static const Color loadImagePlaceHolder = Color(0xff7b8688);
 }
 
 class AppSizes {

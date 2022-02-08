@@ -28,17 +28,20 @@ class AppDataEntity {
 
 class Background {
   late String slug;
+  late String name;
   late String image;
   late String thumbnail;
 
   Background.fromJson(Map<String, dynamic> json) {
     slug = json['slug'];
+    name = json['name'];
     image = json['image'];
     thumbnail = json['thumbnail'];
   }
 
   Map<String, dynamic> toJson() => {
         'slug': slug,
+        'name': name,
         'image': image,
         'thumbnail': thumbnail,
       };
