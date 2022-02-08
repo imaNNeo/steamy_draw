@@ -2,6 +2,7 @@ class AppDataEntity {
   late List<Background> defaultBackgrounds;
   late List<Steams> steams;
   late Config config;
+  late int expiresAfter;
 
   AppDataEntity.fromJson(Map<String, dynamic> json) {
     defaultBackgrounds = <Background>[];
@@ -13,6 +14,7 @@ class AppDataEntity {
       steams.add(Steams.fromJson(v));
     });
     config = Config.fromJson(json['config']);
+    expiresAfter = json['expires_after'] as int;
   }
 
   Map<String, dynamic> toJson() => {
@@ -20,6 +22,7 @@ class AppDataEntity {
             defaultBackgrounds.map((v) => v.toJson()).toList(),
         'steams': steams.map((v) => v.toJson()).toList(),
         'config': config.toJson(),
+        'expires_after': expiresAfter,
       };
 }
 

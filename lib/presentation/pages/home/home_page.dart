@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:steamy_draw/data/repository/app_repository.dart';
 import 'package:steamy_draw/presentation/pages/widget/main_button.dart';
 import 'package:steamy_draw/resources.dart';
 
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
+    AppRepository().getAppData();
     pageStartController =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
     firstButtonAnim = Tween<Offset>(

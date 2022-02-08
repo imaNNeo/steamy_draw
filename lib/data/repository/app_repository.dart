@@ -16,21 +16,25 @@ class AppRepository {
   final _sharedPrefDataSource = SharedPrefDataSource();
 
   Future<AppDataEntity> getAppData() async {
-    final appData = await _sharedPrefDataSource.readAppData();
-    if (appData == null) {
-      return await refreshAppData();
+    final cachedAppData = await _sharedPrefDataSource.readAppData();
+    if (cachedAppData == null) {
+      return await _refreshAppData();
     }
-    try {
-      final currentTimeStamp = DateTime.now().millisecondsSinceEpoch;
-      final diff = currentTimeStamp - (await _sharedPrefDataSource.getAppDataLastWriteTime());
-      if (diff >= 1000 * 60 * 60 * 24) {
-        refreshAppData();
-      }
-    } catch(e) {}
-    return appData;
+
+    if (await _isAppDataExpired(cachedAppData)) {
+      return await _refreshAppData();
+    }
+
+    return cachedAppData;
   }
 
-  Future<AppDataEntity> refreshAppData() async {
+  Future<bool> _isAppDataExpired(AppDataEntity appData) async {
+    final currentTimeStamp = DateTime.now().millisecondsSinceEpoch;
+    final diff = currentTimeStamp - (await _sharedPrefDataSource.getAppDataLastWriteTime());
+    return diff > appData.expiresAfter;
+  }
+
+  Future<AppDataEntity> _refreshAppData() async {
     final newData = await _appDataSource.getAppData();
     await _sharedPrefDataSource.writeAppData(newData);
     return newData;

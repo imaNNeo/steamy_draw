@@ -43,5 +43,6 @@
   ],
   "config": {
     "instagram_id": "steamy_draw"
-  }
+  },
+  "expires_after": 86400000
 }
