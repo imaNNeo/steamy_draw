@@ -21,7 +21,11 @@ class AppRepository {
       return await refreshAppData();
     }
     try {
-      refreshAppData();
+      final currentTimeStamp = DateTime.now().millisecondsSinceEpoch;
+      final diff = currentTimeStamp - (await _sharedPrefDataSource.getAppDataLastWriteTime());
+      if (diff >= 1000 * 60 * 60 * 24) {
+        refreshAppData();
+      }
     } catch(e) {}
     return appData;
   }
