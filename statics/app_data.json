@@ -2,21 +2,25 @@
   "default_backgrounds":[
     {
       "slug": "chalous",
+      "name": "Chalous",
       "image": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_1.jpg?raw=true",
       "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_1_thumb.png?raw=true"
     },
     {
       "slug": "eiffel",
+      "name": "Eiffel",
       "image": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_2.jpg?raw=true",
       "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_2_thumb.png?raw=true"
     },
     {
       "slug": "invoker",
+      "name": "Invoker",
       "image": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_3.jpg?raw=true",
       "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_3_thumb.png?raw=true"
     },
     {
       "slug": "beach",
+      "name": "Beach",
       "image": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_4.jpg?raw=true",
       "thumbnail": "https://github.com/imaNNeoFighT/steamy_draw/blob/master/statics/images/backgrounds/default_bg_4_thumb.png?raw=true"
     }
