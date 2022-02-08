@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:steamy_draw/pages/home/home_page.dart';
+import 'package:steamy_draw/presentation/pages/home/home_page.dart';
 import 'package:steamy_draw/resources.dart';
 
 void main() {
@@ -14,7 +14,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: AppTexts.appName,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: const ColorScheme(
+          primary: AppColors.primary,
+          primaryVariant: AppColors.primary,
+          secondary: AppColors.secondary,
+          secondaryVariant: AppColors.secondary,
+          surface: AppColors.secondary,
+          background: AppColors.secondary,
+          error: AppColors.error,
+          onPrimary: AppColors.onPrimary,
+          onSecondary: AppColors.onSecondary,
+          onSurface: AppColors.onSecondary,
+          onBackground: AppColors.onSecondary,
+          onError: AppColors.onError,
+          brightness: Brightness.light,
+        ),
         fontFamily: 'IranSans',
       ),
       home: const HomePage(),
