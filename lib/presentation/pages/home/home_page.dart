@@ -1,9 +1,21 @@
+import 'dart:async';
+import 'dart:typed_data';
+import 'dart:ui';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:steamy_draw/data/entity/app_data_entity.dart';
 import 'package:steamy_draw/data/repository/app_repository.dart';
+import 'package:steamy_draw/extensions/future_extensions.dart';
+import 'package:steamy_draw/presentation/models/selected_steam.dart';
 import 'package:steamy_draw/presentation/pages/bg_chooser/bg_chooser_dialog.dart';
+import 'package:steamy_draw/presentation/pages/steam/steam_page.dart';
+import 'package:steamy_draw/presentation/pages/steam_chooser/steam_chooser_dialog.dart';
 import 'package:steamy_draw/presentation/pages/widget/main_button.dart';
 import 'package:steamy_draw/resources.dart';
+import 'dart:ui' as ui;
+
+import 'package:steamy_draw/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -88,8 +100,36 @@ class _HomePageState extends State<HomePage>
                     child: MainButton(
                       text: 'شروع با تصاویر برنامه',
                       icon: Icons.collections,
-                      onTap: () {
-                        _showMyDialog(context);
+                      onTap: () async {
+                        final background = await _showChooseBgDialog(context);
+                        if (background == null) {
+                          return;
+                        }
+                        final backgroundImage =
+                            await Utils.getCachedImage(background.image)
+                                .getOrNull();
+                        if (backgroundImage == null) {
+                          return;
+                        }
+                        final steamToOpacity = await _showChooseSteamDialog(
+                            context, backgroundImage);
+                        if (steamToOpacity == null) {
+                          return;
+                        }
+                        final steamImage = await Utils.getCachedImage(steamToOpacity.key.landscape);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SteamPage(
+                                image: backgroundImage,
+                                steam: SelectedSteamImage(
+                                    steamImage,
+                                    steamToOpacity.value,
+                                ),
+                              );
+                            },
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -158,19 +198,16 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  Future<void> _showMyDialog(BuildContext context) async {
+  Future<Background?> _showChooseBgDialog(BuildContext context) async {
     try {
       final appData = await AppRepository().getAppData();
-      await showGeneralDialog<void>(
+      final result = await showGeneralDialog<void>(
         context: context,
         barrierDismissible: true,
         barrierLabel: 'close',
-        pageBuilder: (BuildContext context, Animation<double> a1, Animation<double> a2) {
-          return Container(
-            width: 400,
-            height: 400,
-            color: Colors.redAccent,
-          );
+        pageBuilder:
+            (BuildContext context, Animation<double> a1, Animation<double> a2) {
+          return Container();
         },
         transitionBuilder: (ctx, a1, a2, child) {
           var curve = Curves.easeInOut.transform(a1.value);
@@ -181,8 +218,39 @@ class _HomePageState extends State<HomePage>
         },
         transitionDuration: const Duration(milliseconds: 300),
       );
+      return result as Background;
     } catch (e) {
-      print(e);
+      return null;
+    }
+  }
+
+  Future<MapEntry<Steam, double>?> _showChooseSteamDialog(
+      BuildContext context, ui.Image background) async {
+    try {
+      final appData = await AppRepository().getAppData();
+      final result = await showGeneralDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        barrierLabel: 'close',
+        pageBuilder:
+            (BuildContext context, Animation<double> a1, Animation<double> a2) {
+          return Container();
+        },
+        transitionBuilder: (ctx, a1, a2, child) {
+          var curve = Curves.easeInOut.transform(a1.value);
+          return Transform.scale(
+            scale: curve,
+            child: SteamChooserDialog(
+              background: background,
+              steams: appData.steams,
+            ),
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 300),
+      );
+      return result as MapEntry<Steam, double>;
+    } catch (e) {
+      return null;
     }
   }
 }

@@ -83,7 +83,9 @@ class _BgChooserDialogState extends State<BgChooserDialog> {
               FloatingActionButton(
                 backgroundColor: AppColors.primary,
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(
+                    widget.backgrounds[currentIndex]
+                  );
                 },
                 child: const Text(
                   'شروع',

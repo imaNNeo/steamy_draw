@@ -1,6 +1,6 @@
 class AppDataEntity {
   late List<Background> defaultBackgrounds;
-  late List<Steams> steams;
+  late List<Steam> steams;
   late Config config;
   late int expiresAfter;
 
@@ -9,9 +9,9 @@ class AppDataEntity {
     json['default_backgrounds'].forEach((v) {
       defaultBackgrounds.add(Background.fromJson(v));
     });
-    steams = <Steams>[];
+    steams = <Steam>[];
     json['steams'].forEach((v) {
-      steams.add(Steams.fromJson(v));
+      steams.add(Steam.fromJson(v));
     });
     config = Config.fromJson(json['config']);
     expiresAfter = json['expires_after'] as int;
@@ -47,13 +47,13 @@ class Background {
       };
 }
 
-class Steams {
+class Steam {
   late String slug;
   late String landscape;
   late String portrait;
   late String thumbnail;
 
-  Steams.fromJson(Map<String, dynamic> json) {
+  Steam.fromJson(Map<String, dynamic> json) {
     slug = json['slug'];
     landscape = json['landscape'];
     portrait = json['portrait'];
